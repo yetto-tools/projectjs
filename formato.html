@@ -57,7 +57,7 @@
           <tr>
             <td class="" align="center" >Cant.</td>
             <td class="" align="center" >Descripcion</td>
-            <td class="" align="center">precio</td>
+            <td class="" align="center">Precio</td>
           </tr>
         </thead>
         <tbody class="tbody">
@@ -130,7 +130,7 @@
       </div>
     </div>
   </div>
-  <section id="listado" class="container mt-4">
+  <section id="listado" class="row mt-4">
         <div class=" row mt-1 mb-4">
 
           <div class="col-sm col-md-12" align="center">
@@ -161,30 +161,36 @@
               </div>
           </div>
 
-            <div class="col-sm col-md-12 mt-2">
+            <div class="col-sm col-md-12">
 
                 <div class="row">
-                <div class="col-12">
+                <div class="col-sm col-xs-12">
                   <h5><strong>Listado de Contactos</strong></h5>
                   <hr>
+
+                  <table class="tabla table-striped table-bordered table-light w-100 ml-3 mr-5">
+                    <thead class="table-dark text-center">
+                      <tr>
+                        <th onclick="sortRecords('Nombre')">Nombre</th>
+                        <th onclick="sortRecords('Nit')">Nit</th>
+                        <th onclick="sortRecords('Telefono')">Telefono</th>
+                        <th onclick="sortRecords('Direccion')">Direccion</th>
+                        <th colspan="2" >Acciones</th>
+                      </tr>
+                    </thead>
+                    <tbody id="listado_contactos">
+                      <tr>
+                        <td id="listid" style="visibility: hidden"/>
+                        <td id="listNombre"></td>
+                        <td id="listNit"></td>
+                        <td id="listTelefono"></td>
+                        <td id="listDir"></td>
+                      </tr>
+                    </tbody>
+                  </table>
+
                 </div>
                 </div>
-                <table class="tabla table-striped table-light w-100 ">
-                  <thead class="table-dark">
-                    <th name="" onclick="sortRecords('Nombre')">Nombre</th>
-                    <th name="" onclick="sortRecords('Nit')">Nit</th>
-                    <th name="" onclick="sortRecords('Telefono')">Telefono</th>
-                    <th colspan="2">Acciones</th>
-                  </thead>
-                  <tbody id="listado_contactos">
-                    <tr>
-                      <td id="listid" style="visibility: hidden"/>
-                      <td id="listNombre"></td>
-                      <td id="listNit"></td>
-                      <td id="listTelefono"></td>
-                    </tr>
-                  </tbody>
-                </table>
             </div>
         </div>
 
@@ -194,8 +200,8 @@
 
       <h5><strong>Crear Contacto</strong></h5>
       <hr>
-      <div class="row">
-          <div class="col-sm  col-md-12">
+      <div class="row ml-5 mr-5 pr-5 pl-5">
+          <div class="col-sm col-md-12" >
 
               <form class="form form-group-sm">
                 <div class="form-group">
@@ -213,17 +219,15 @@
                     <small class="form-text text-muted">Telefono</small>
                     <input class="form-control" type="text" id="inputPhone" value="" placeholder="Telefono">
                 </div>
-
-                </div>
-                <div class="row pl-5 pt-1">
-                  <div class="form-group">
-                      <input id="submitButton" class="btn btn-success btn-sm" type="button" value="Guardar" >
-                </div>
-
             </form>
 
-
+            <div class="row pl-5 pt-1">
+              <div class="form-group">
+                <input id="submitButton" class="btn btn-success btn-sm" type="button" value="Guardar" >
+              </div>
             </div>
+          </div>
+
           </div>
       </div>
 
