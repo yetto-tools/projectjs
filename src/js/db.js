@@ -94,7 +94,10 @@ function goto(tagId){
 
 function loadRecord(i){ // Function for display records which are retrived from database.
     var item = dataset.item(i);
+<<<<<<< HEAD
     document.getElementById("submitButton").focus();
+=======
+>>>>>>> 202d275c6c7e786f8fe8f9546bd1df4c1e94c015
     document.getElementById("inputName").focus();
     $("#inputName").val((item['Nombre']).toString());
     $("#inputVat").val((item['Nit']).toString());
@@ -144,7 +147,10 @@ function showRecords(){ // Function For Retrive data from Database Display recor
 }
 function sortRecords(value){ // Function For Retrive data from Database Display records as list
   $("#listado_contactos").html('');
+<<<<<<< HEAD
 
+=======
+>>>>>>> 202d275c6c7e786f8fe8f9546bd1df4c1e94c015
   db.transaction(function (tx) {
     tx.executeSql("select * from Contacts order by "+value+ " desc;" , [], function (tx, result) {
       dataset = result.rows;
@@ -164,6 +170,11 @@ function sortRecords(value){ // Function For Retrive data from Database Display 
         });
     });
 }
+
+function findRecords(){ // Function For Retrive data from Database Display records as list
+  var value = $('input:text[id=findNit]').val();
+  var filtro = $('button:button[name=filtro]').val();
+  console.log(filtro);
 
 function findRecords(){ // Function For Retrive data from Database Display records as list
   var value = $('input:text[id=findNit]').val().toString();
