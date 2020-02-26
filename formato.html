@@ -145,13 +145,15 @@
                 <div class="form-check form-check-inline">
                   <input class="form-check-input" type="radio" id="filtro1" name="filtro" value="Nombre">
                   <label class="form-check-label" for="filtro1">
-                    <small class="form-text text-muted text-wrap pl-0" style="width: 6rem;">filtar por Nombre</small>
+                    <!-- <small class="form-text text-muted text-wrap pl-0" style="width: 6rem;">filtar por Nombre</small> -->
+                    <small class="form-text text-muted text-wrap pl-0" >filtar por Nombre</small>
                   </label>
                 </div>
                 <div class="form-check form-check-inline">
                   <input class="form-check-input" type="radio" id="filtro2" name="filtro" value="Nit" checked>
                   <label class="form-check-label" for="filtro1">
-                    <small class="form-text text-muted text-wrap" style="width: 6rem;">filtar por Nombre</small>
+                    <!-- <small class="form-text text-muted text-wrap" style="width: 6rem;">filtar por Nombre</small> -->
+                    <small class="form-text text-muted text-wrap" >filtar por Nit</small>
                   </label>
                 </div>
                 </div>
@@ -160,6 +162,13 @@
           </div>
 
             <div class="col-sm col-md-12 mt-2">
+
+                <div class="row">
+                <div class="col-12">
+                  <h5><strong>Listado de Contactos</strong></h5>
+                  <hr>
+                </div>
+                </div>
                 <table class="tabla table-striped table-light w-100 ">
                   <thead class="table-dark">
                     <th name="" onclick="sortRecords('Nombre')">Nombre</th>
@@ -181,13 +190,15 @@
 
   </section>
   <section id="inputs" class="container">
-    <div class="according">
+    <div class="according mt-5">
 
-      <div class="row mt-5">
-          <div class="col-sm-12">
+      <h5><strong>Crear Contacto</strong></h5>
+      <hr>
+      <div class="row">
+          <div class="col-sm  col-md-12">
 
-              <form>
-                <div class="form-group small">
+              <form class="form form-group-sm">
+                <div class="form-group">
                   <input type="hidden" id="id"/>
                   <small class="form-text text-muted">Nombre</small>
                   <input class="form-control" type="text" id="inputName" placeholder="Nombre" required autofocus>
