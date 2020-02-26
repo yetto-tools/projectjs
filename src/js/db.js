@@ -94,10 +94,7 @@ function goto(tagId){
 
 function loadRecord(i){ // Function for display records which are retrived from database.
     var item = dataset.item(i);
-<<<<<<< HEAD
     document.getElementById("submitButton").focus();
-=======
->>>>>>> 202d275c6c7e786f8fe8f9546bd1df4c1e94c015
     document.getElementById("inputName").focus();
     $("#inputName").val((item['Nombre']).toString());
     $("#inputVat").val((item['Nit']).toString());
@@ -147,10 +144,7 @@ function showRecords(){ // Function For Retrive data from Database Display recor
 }
 function sortRecords(value){ // Function For Retrive data from Database Display records as list
   $("#listado_contactos").html('');
-<<<<<<< HEAD
 
-=======
->>>>>>> 202d275c6c7e786f8fe8f9546bd1df4c1e94c015
   db.transaction(function (tx) {
     tx.executeSql("select * from Contacts order by "+value+ " desc;" , [], function (tx, result) {
       dataset = result.rows;
@@ -170,11 +164,6 @@ function sortRecords(value){ // Function For Retrive data from Database Display 
         });
     });
 }
-
-function findRecords(){ // Function For Retrive data from Database Display records as list
-  var value = $('input:text[id=findNit]').val();
-  var filtro = $('button:button[name=filtro]').val();
-  console.log(filtro);
 
 function findRecords(){ // Function For Retrive data from Database Display records as list
   var value = $('input:text[id=findNit]').val().toString();
@@ -201,7 +190,7 @@ function findRecords(){ // Function For Retrive data from Database Display recor
         '<td id="regName"   style="width:30%;">' + '<a href="#" onclick="fillInvoice('+ i +')">' + item['Nombre'] +'</a>'+ '</td>' +
         '<td id="regVat"    style="width:10%;">' + item['Nit']    + '</td>' +
         '<td id="regPhone"  style="width:10%;">' + item['Telefono'] + '</td>' +
-        '<td id="regStreet" style="width:36%;">' + item['Direccion'] + '</td>' +
+        '<td id="regStreet" style="width:40%;">' + item['Direccion'] + '</td>' +
         '<td style="width:7%; " align="center">' + '<a class="btn btn-success btn-sm" id="actionEdit" href="#submitButton" onclick="loadRecord(' + i + ');">Editar</a>' + '</td>'+
         '<td style="width:7%; " align="center">' + '<a class="btn btn-danger btn-sm" id="actionDelete" href="#" onclick="deleteRecord(' + item['id'] + ');">eliminar</a>'+'</td>'+
         '</tr>';
