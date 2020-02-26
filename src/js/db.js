@@ -87,6 +87,11 @@ function dropTable(){ // Function Call when Drop Button Click.. Talbe will be dr
 
 }
 
+function goto(tagId){
+  var top = document.getElementById(tagId).offsetTop; //Getting Y of target element
+  window.scrollTo(0, top);                        //Go there directly or some transition
+}
+
 function loadRecord(i){ // Function for display records which are retrived from database.
     var item = dataset.item(i);
     document.getElementById("submitButton").focus();
@@ -96,6 +101,7 @@ function loadRecord(i){ // Function for display records which are retrived from 
     $("#inputStreet").val((item['Direccion']).toString());
     $("#inputPhone").val((item['Telefono']).toString());
     $("#id").val((item['id']).toString());
+
 }
 
 function resetForm(){ // Function for reset form input values.
@@ -124,11 +130,12 @@ function showRecords(){ // Function For Retrive data from Database Display recor
       for (var i = 0, item = null; i < dataset.length; i++) {
         item = dataset.item(i);
         var linkeditdelete = '<tr>'+
-        '<td>' + '<a href="#" onclick="fillInvoice('+ i +')">' + item['Nombre'] +'</a>'+ '</td>' +
-        '<td>' + item['Nit']    + '</td>' +
-        '<td>' + item['Telefono'] + '</td>' +
-        '<td>' + '<a href="#" onclick="loadRecord(' + i + ');">Editar</a>' + '</td>'+
-        '<td>' + '<a href="#" onclick="deleteRecord(' + item['id'] + ');">eliminar</a>'+'</td>'+
+        '<td id="regName"   style="width:30%;">' + '<a href="#" onclick="fillInvoice('+ i +')">' + item['Nombre'] +'</a>'+ '</td>' +
+        '<td id="regVat"    style="width:10%;">' + item['Nit']    + '</td>' +
+        '<td id="regPhone"  style="width:10%;">' + item['Telefono'] + '</td>' +
+        '<td id="regStreet" style="width:36%;">' + item['Direccion'] + '</td>' +
+        '<td style="width:7%; " align="center">' + '<a class="btn btn-success btn-sm" id="actionEdit" href="#submitButton" onclick="loadRecord(' + i + ');">Editar</a>' + '</td>'+
+        '<td style="width:7%; " align="center">' + '<a class="btn btn-danger btn-sm" id="actionDelete" href="#" onclick="deleteRecord(' + item['id'] + ');">eliminar</a>'+'</td>'+
         '</tr>';
                 $("#listado_contactos").append(linkeditdelete);
             }
@@ -137,6 +144,7 @@ function showRecords(){ // Function For Retrive data from Database Display recor
 }
 function sortRecords(value){ // Function For Retrive data from Database Display records as list
   $("#listado_contactos").html('');
+
   db.transaction(function (tx) {
     tx.executeSql("select * from Contacts order by "+value+ " desc;" , [], function (tx, result) {
       dataset = result.rows;
@@ -144,26 +152,27 @@ function sortRecords(value){ // Function For Retrive data from Database Display 
       for (var i = 0, item = null; i < dataset.length; i++) {
         item = dataset.item(i);
         var linkeditdelete = '<tr>'+
-        '<td>' + '<a href="#" onclick="fillInvoice('+ i +')">' + item['Nombre'] +'</a>'+ '</td>' +
-        '<td>' + item['Nit']    + '</td>' +
-        '<td>' + item['Telefono'] + '</td>' +
-        '<td>' + '<a href="#" onclick="loadRecord(' + i + ');">Editar</a>' + '</td>'+
-        '<td>' + '<a href="#" onclick="deleteRecord(' + item['id'] + ');">eliminar</a>'+'</td>'+
+        '<td id="regName"   style="width:30%;">' + '<a href="#" onclick="fillInvoice('+ i +')">' + item['Nombre'] +'</a>'+ '</td>' +
+        '<td id="regVat"    style="width:10%;">' + item['Nit']    + '</td>' +
+        '<td id="regPhone"  style="width:10%;">' + item['Telefono'] + '</td>' +
+        '<td id="regStreet" style="width:36%;">' + item['Direccion'] + '</td>' +
+        '<td style="width:7%; " align="center">' + '<a class="btn btn-success btn-sm" id="actionEdit" href="#submitButton" onclick="loadRecord(' + i + ');">Editar</a>' + '</td>'+
+        '<td style="width:7%; " align="center">' + '<a class="btn btn-danger btn-sm" id="actionDelete" href="#" onclick="deleteRecord(' + item['id'] + ');">eliminar</a>'+'</td>'+
         '</tr>';
-                $("#listado_contactos").append(linkeditdelete);
-            }
+        $("#listado_contactos").append(linkeditdelete);
+      }
         });
     });
 }
 
 function findRecords(){ // Function For Retrive data from Database Display records as list
-  var value = $('input:text[id=findNit]').val().toString();  
+  var value = $('input:text[id=findNit]').val().toString();
   var filtro = $('input:radio[name=filtro]:checked').val().toString();
   switch(filtro){
     case "Nit":
       filtro = "Nit";
     break;
-    
+
     case "Nombre":
       filtro = "Nombre";
     break;
@@ -178,26 +187,31 @@ function findRecords(){ // Function For Retrive data from Database Display recor
       for (var i = 0, item = null; i < dataset.length; i++) {
         item = dataset.item(i);
         var linkeditdelete = '<tr>'+
-        '<td>' + '<a href="#" onclick="fillInvoice('+ i +')">' + item['Nombre'] +'</a>'+ '</td>' +
-        '<td>' + item['Nit']    + '</td>' +
-        '<td>' + item['Telefono'] + '</td>' +
-        '<td>' + '<a href="#" onclick="loadRecord(' + i + ');">Editar</a>' + '</td>'+
-        '<td>' + '<a href="#" onclick="deleteRecord(' + item['id'] + ');">eliminar</a>'+'</td>'+
+        '<td id="regName"   style="width:30%;">' + '<a href="#" onclick="fillInvoice('+ i +')">' + item['Nombre'] +'</a>'+ '</td>' +
+        '<td id="regVat"    style="width:10%;">' + item['Nit']    + '</td>' +
+        '<td id="regPhone"  style="width:10%;">' + item['Telefono'] + '</td>' +
+        '<td id="regStreet" style="width:36%;">' + item['Direccion'] + '</td>' +
+        '<td style="width:7%; " align="center">' + '<a class="btn btn-success btn-sm" id="actionEdit" href="#submitButton" onclick="loadRecord(' + i + ');">Editar</a>' + '</td>'+
+        '<td style="width:7%; " align="center">' + '<a class="btn btn-danger btn-sm" id="actionDelete" href="#" onclick="deleteRecord(' + item['id'] + ');">eliminar</a>'+'</td>'+
         '</tr>';
                 $("#listado_contactos").append(linkeditdelete);
             }
         });
     });
+
+    //limpiar texto de busqueda
+    $('input:text[id=findNit]').val("");
 }
 
 function fillInvoice(i){
   $("#datos")
   var item = dataset.item(i);
-  console.log(i, item['Nombre']);
+//  console.log(i, (item['Nombre']));
+
   document.getElementById("invoiceName").innerHTML = item['Nombre'];
   document.getElementById("invoiceVat").innerHTML = item['Nit'];
-  document.getElementById("invioceStreet").innerHTML = item['Direccion'];
   document.getElementById("invoicePhone").innerHTML = item['Telefono'];
+  document.getElementById("invioceStreet").innerHTML = item['Direccion'];
 
 }
 $(document).ready(function (){

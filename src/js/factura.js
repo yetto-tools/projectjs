@@ -187,29 +187,27 @@ function sumar () {
           if ( !isNaN(celda )){
             precio[index].innerHTML = celda
           }
-
         if ( precio[index].innerHTML !=0 && !isNaN(precio[index].innerHTML)) {
           subtotal += parseFloat(precio[index].innerHTML);
          //console.log("2do bloq if ",subtotal);
         }
         else{
          //console.log(celda);
+         //Rellenar con espacio en blanco
+         precio[index].innerHTML = "---------"
           //break;
         }
       }
     total = (parseFloat(subtotal)).toFixed(2);
     //console.log(total);
-
    //console.log(total);
     document.getElementById("total").innerHTML=new Intl.NumberFormat(
       "en-US",{ minimumFractionDigits: 2 }).format(total);
-
    //console.log(num2words(total));
-
     //console.log(new Intl.NumberFormat("en-US",{ minimumFractionDigits: 2 }).format(total));
-
     document.getElementById("totalletras").innerHTML =num2words(total);
-    }
+
+}
 
 function borrar(){
 
