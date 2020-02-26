@@ -89,6 +89,7 @@ function dropTable(){ // Function Call when Drop Button Click.. Talbe will be dr
 
 function loadRecord(i){ // Function for display records which are retrived from database.
     var item = dataset.item(i);
+    document.getElementById("submitButton").focus();
     document.getElementById("inputName").focus();
     $("#inputName").val((item['Nombre']).toString());
     $("#inputVat").val((item['Nit']).toString());
@@ -154,14 +155,6 @@ function sortRecords(value){ // Function For Retrive data from Database Display 
         });
     });
 }
-<<<<<<< HEAD
-=======
-
-function findRecords(){ // Function For Retrive data from Database Display records as list
-  var value = $('input:text[id=findNit]').val();
-  var filtro = $('button:button[name=filtro]').val();
-  console.log(filtro);
->>>>>>> 202d275c6c7e786f8fe8f9546bd1df4c1e94c015
 
 function findRecords(){ // Function For Retrive data from Database Display records as list
   var value = $('input:text[id=findNit]').val().toString();  
@@ -177,14 +170,10 @@ function findRecords(){ // Function For Retrive data from Database Display recor
     default:
       filtro="id";
   }
-  console.log(' '+filtro);
+  //console.log(' '+filtro);
   $("#listado_contactos").html('')
   db.transaction(function (tx) {
-<<<<<<< HEAD
-    tx.executeSql("select * from Contacts where " + filtro + " like('%"+ value +"%') order by id desc;", [], function (tx, result) {
-=======
-    tx.executeSql("select * from Contacts where Nit like('%"+ value +"%') order by id desc;", [], function (tx, result) {
->>>>>>> 202d275c6c7e786f8fe8f9546bd1df4c1e94c015
+    tx.executeSql("select * from Contacts where " + filtro + " like('%"+ value +"%') order by id asc;", [], function (tx, result) {
       dataset = result.rows;
       for (var i = 0, item = null; i < dataset.length; i++) {
         item = dataset.item(i);
