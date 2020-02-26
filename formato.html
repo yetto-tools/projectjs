@@ -131,28 +131,28 @@
     </div>
   </div>
   <section id="listado" class="row mt-4">
-        <div class=" row mt-1 mb-4">
+        <div class="col-12">
 
           <div class="col-sm col-md-12" align="center">
-            <div class="cols-sm col-sm-6">
+            <div class="cols-sm col-sm-5">
               <form class="form form-inline " action="index.html" method="post">
                 <input id="findNit"class="form-control mr-1" type="text" name="" value="" placeholder="Buscar Contacto">
                 <input id="btnFind" class="btn btn-primary btn-sm" type="button" name="" value="Buscar">
               </form>
             </div>
-              <div class="cols-sm col-sm-4">
+              <div class="col-sm-4 col-xs-12 pr-0">
                 <div class="btn-toolbar mt-1 role-toolbar" aria-label="Toolbar with button groups">
                 <div class="form-check form-check-inline">
                   <input class="form-check-input" type="radio" id="filtro1" name="filtro" value="Nombre">
-                  <label class="form-check-label" for="filtro1">
-                    <small class="form-text text-muted text-wrap pl-0" >filtar por Nombre</small>
+                  <label class="form-check-label pl-0 mr-3" for="filtro1">
+                    <small class="form-text text-muted text-wrap pl-0" style="width: 5rem;">filtar por Nombre</small>
                     <!-- <small class="form-text text-muted text-wrap pl-0" style="width: 6rem;">filtar por Nombre</small> -->
                   </label>
                 </div>
                 <div class="form-check form-check-inline">
                   <input class="form-check-input" type="radio" id="filtro2" name="filtro" value="Nit" checked>
-                  <label class="form-check-label" for="filtro1">
-                    <small class="form-text text-muted text-wrap" >filtar por Nit</small>
+                  <label class="form-check-label pl-0" for="filtro1">
+                    <small class="form-text text-muted text-wrap pl-0" style="width: 5rem;">filtar por Nit</small>
                     <!-- <small class="form-text text-muted text-wrap" style="width: 6rem;">filtar por Nombre</small> -->
                   </label>
                 </div>
@@ -168,7 +168,7 @@
                   <h5><strong>Listado de Contactos</strong></h5>
                   <hr>
 
-                  <table class="tabla table-striped table-bordered table-light w-100 ml-3 mr-5">
+                  <table class="tabla table-striped table-light w-100 ml-3 mr-5">
                     <thead class="table-dark text-center">
                       <tr>
                         <th onclick="sortRecords('Nombre')">Nombre</th>
