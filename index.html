@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Oxygen+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Space+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <link rel="stylesheet" href="src/css/factura.css">
+    <!-- <link rel="stylesheet" href="superhero.min.css"> -->
+  </head>
+  <body onload="fecha()" >
+    <div class="row" id="logo">
+      <!-- <input type="button" value="Genera una tabla" onclick="generar_lineas"> -->
+        <!-- <button type="button" onclick="javascript:window.print()">Imprimir</button> -->
+
+    </div>
+<!-- Fecha -->
+    <div class="row">
+      <div class="col">
+        <table id="fecha" class="tbl" align="right">
+          <tr>
+            <td id="day" contenteditable="true"></td>
+            <td id="month" contenteditable="true"></td>
+            <td id="year" contenteditable="true"></td>
+          </tr>
+        </table>
+    </div>
+  </div>
+<!-- Datos Cliente -->
+  <div class="row">
+      <div class="col">
+        <table id="datos" class="tbl">
+          <tr class="datos-fila">
+              <!-- <td class="label">Nombre:</td> -->
+              <td id="invoiceName" class="nombre" contenteditable="true" width"75" value="Cliente"></td>
+            <!-- <td class="label">NIT:</td> -->
+            <td id="invoiceVat" class="nit" contenteditable="true"></td>
+          </tr>
+          <tr class="datos-fila">
+            <!-- <td class="label">direccion</td> -->
+            <td id="invioceStreet" class="direccion" contenteditable="true"></td>
+            <!-- <td class="label">Telefono</td> -->
+            <td id="invoicePhone" class="telefono" contenteditable="true"></td>
+          </tr>
+
+        </table>
+      </div>
+  </div>
+<!-- Detalle de Factura -->
+  <div class="row">
+    <div class="col">
+      <table id="detalle" class="tbl">
+        <thead>
+          <tr>
+            <td class="" align="center" >Cant.</td>
+            <td class="" align="center" >Descripcion</td>
+            <td class="" align="center">Precio</td>
+          </tr>
+        </thead>
+        <tbody class="tbody">
+          <tr>
+            <td name="cant" class="cant" align="right" contenteditable="true"></td>
+            <td class="desc" align="left" contenteditable="true"></td>
+            <td name="valor" class="val"  align="right" contenteditable="true"></td>
+          </tr>
+          <tr>
+            <td class="cant" align="right" contenteditable="true"></td>
+            <td class="desc" align="left" contenteditable="true"></td>
+            <td name="valor" class="val"  align="right" contenteditable="true"></td>
+          </tr>
+          <tr>
+            <td class="cant" align="right" contenteditable="true"></td>
+            <td class="desc" align="left" contenteditable="true"></td>
+            <td name="valor" class="val"  align="right" contenteditable="true"></td>
+          </tr>
+          <tr>
+            <td class="cant" align="right" contenteditable="true"></td>
+            <td class="desc" align="left" contenteditable="true"></td>
+            <td name="valor" class="val"  align="right" contenteditable="true"></td>
+          </tr>
+          <tr>
+            <td class="cant" align="right" contenteditable="true"></td>
+            <td class="desc" align="left" contenteditable="true"></td>
+            <td name="valor" class="val"  align="right" contenteditable="true"></td>
+          </tr>
+          <tr>
+            <td class="cant" align="right" contenteditable="true"></td>
+            <td class="desc" align="left" contenteditable="true"></td>
+            <td name="valor" class="val"  align="right" contenteditable="true"></td>
+          </tr>
+          <tr>
+            <td class="cant" align="right" contenteditable="true"></td>
+            <td class="desc" align="left" contenteditable="true"></td>
+            <td name="valor" class="val"  align="right" contenteditable="true"></td>
+          </tr>
+          <tr>
+            <td class="cant" align="right" contenteditable="true"></td>
+            <td class="desc" align="left" contenteditable="true"></td>
+            <td name="valor" class="val"  align="right" contenteditable="true"></td>
+          </tr>
+          <tr>
+            <td class="cant" align="right" contenteditable="true"></td>
+            <td class="desc" align="left" contenteditable="true"></td>
+            <td name="valor" class="val"  align="right" contenteditable="true"></td>
+          </tr>
+
+        </tbody>
+        <tfoot id="tfoot">
+          <tr>
+            <tr>
+              <td id="totalletras" class="totalletras" colspan="2" >CERO QUETZALES</td>
+              <td id="total" class="total" align="right" onclick="sumar()">0.00</td>
+            </tr>
+          </tr>
+
+        </tfoot>
+      </table>
+      <div class="row mb-4" align="center" >
+          <div class="col-sm col-md-6">
+            <button class="btn btn-warning btn-sm" type="button" name="button" onclick="borrar()">Limpiar Campos</button>
+            <small class="form-text text-muted">Borra dos Datos del Formulario</small>
+          </div>
+          <div class="col-sm col-md-6">
+          <button class="btn btn-info btn-sm" type="button" name="button" onclick="imprimir()">Imprimir</button>
+          <small class="form-text text-muted">Envia a Imprimir el Formulario de Factura</small>
+          </div>
+      </div>
+    </div>
+  </div>
+  <section id="listado" class="row mt-4">
+        <div class="col-12">
+
+          <div class="col-sm col-md-12" align="center">
+            <div class="cols-sm col-sm-5">
+              <form class="form form-inline " action="index.html" method="post">
+                <input id="findNit"class="form-control mr-1" type="text" name="" value="" placeholder="Buscar Contacto">
+                <input id="btnFind" class="btn btn-primary btn-sm" type="button" name="" value="Buscar">
+              </form>
+            </div>
+              <div class="col-sm-4 col-xs-12 pr-0">
+                <div class="btn-toolbar mt-1 role-toolbar" aria-label="Toolbar with button groups">
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" id="filtro1" name="filtro" value="Nombre">
+                  <label class="form-check-label pl-0 mr-3" for="filtro1">
+                    <small class="form-text text-muted text-wrap pl-0" style="width: 5rem;">filtar por Nombre</small>
+                    <!-- <small class="form-text text-muted text-wrap pl-0" style="width: 6rem;">filtar por Nombre</small> -->
+                  </label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" id="filtro2" name="filtro" value="Nit" checked>
+                  <label class="form-check-label pl-0" for="filtro1">
+                    <small class="form-text text-muted text-wrap pl-0" style="width: 5rem;">filtar por Nit</small>
+                    <!-- <small class="form-text text-muted text-wrap" style="width: 6rem;">filtar por Nombre</small> -->
+                  </label>
+                </div>
+                </div>
+                </div>
+              </div>
+          </div>
+
+            <div class="col-sm col-md-12">
+
+                <div class="row">
+                <div class="col-sm col-xs-12">
+                  <h5><strong>Listado de Contactos</strong></h5>
+                  <hr>
+
+                  <table class="tabla table-striped table-light w-100 ml-3 mr-5">
+                    <thead class="table-dark text-center">
+                      <tr>
+                        <th onclick="sortRecords('Nombre')">Nombre</th>
+                        <th onclick="sortRecords('Nit')">Nit</th>
+                        <th onclick="sortRecords('Telefono')">Telefono</th>
+                        <th onclick="sortRecords('Direccion')">Direccion</th>
+                        <th colspan="2" >Acciones</th>
+                      </tr>
+                    </thead>
+                    <tbody id="listado_contactos">
+                      <tr>
+                        <td id="listid" style="visibility: hidden"/>
+                        <td id="listNombre"></td>
+                        <td id="listNit"></td>
+                        <td id="listTelefono"></td>
+                        <td id="listDir"></td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                </div>
+                </div>
+            </div>
+        </div>
+
+  </section>
+  <section id="inputs" class="container">
+    <div class="according mt-5">
+
+      <h5><strong>Crear Contacto</strong></h5>
+      <hr>
+      <div class="row ml-5 mr-5 pr-5 pl-5">
+          <div class="col-sm col-md-12" >
+
+              <form class="form form-group-sm">
+                <div class="form-group">
+                  <input type="hidden" id="id"/>
+                  <small class="form-text text-muted">Nombre</small>
+                  <input class="form-control" type="text" id="inputName" placeholder="Nombre" required>
+                  <small class="form-text text-muted">Nit</small>
+                  <input class="form-control" type="text" id="inputVat"  placeholder="NIT" required>
+                </div>
+
+
+                <div class="form-group">
+                  <small class="form-text text-muted">Direccion</small>
+                    <input class="form-control" type="text" id="inputStreet" value="" placeholder="Direccion">
+                    <small class="form-text text-muted">Telefono</small>
+                    <input class="form-control" type="text" id="inputPhone" value="" placeholder="Telefono">
+                </div>
+            </form>
+
+            <div class="row pl-5 pt-1">
+              <div class="form-group">
+                <input id="submitButton" class="btn btn-success btn-sm" type="button" value="Guardar" >
+              </div>
+            </div>
+          </div>
+
+          </div>
+      </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <footer class="footer pb-0 mb-0 mt-4" align="center" style="flex-shrink:0;">
+      <span style="font-size: 5pt;">Guatemala,Guatemala 2020</span>
+  </footer>
+
+
+    <script src="src/js/factura.js">
+    </script>
+    <script src="src/js/db.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  </body>
+</html>
