@@ -1,0 +1,148 @@
+*,body{
+  /* font-family:  'FreeMono','Space Mono'; */
+  font-family:  'Oxygen Mono';
+  font-size: 12pt;
+}
+
+#logo{
+  height:20mm;
+}
+
+#fecha{
+  width: 63mm;
+  height: 8mm;
+  margin-bottom: 2mm;
+  margin-right: 10mm;
+  text-align: center;
+  font-weight: bold;
+
+}
+#day,#month{
+  padding-top: 6mm;
+  width: 20mm;
+  border: dotted 1px #007bff;
+}
+#year{
+  padding-top: 6mm;
+  width: 23mm;
+  border: dotted 1px #007bff;
+}
+
+#datos{
+  margin-bottom: 1mm;
+  width: 100%;
+}
+.nombre,.direccion{
+  padding-left: 15mm;
+  width: 75%;
+  border: dotted 1px #007bff;
+}
+.nit,.telefono{
+  padding-left: 7mm;
+  width: 25%;
+  border: dotted 1px #007bff;
+}
+thead{
+  background-color: #007bff;
+}
+#detalle{
+  margin-bottom: 5mm;
+  width:100%;
+
+}
+.cant{
+  width: 15%;
+  height: 7mm;
+  padding-right: 4mm;
+  margin-left: 17mm;
+}
+.desc{
+  width: 60%;
+  padding-left: 5mm;
+}
+.val{
+  width: 25%;
+  padding-right: 13mm;
+  font-size: 9pt;
+}
+.totalletras{
+  padding-top: 5mm;
+  padding-left: 5mm;
+  height: 8mm;
+  font-size: 8pt;
+  font-weight: bold;
+  padding-left: 15mm;
+}
+.total{
+  font-weight: bold;
+  font-size: 10pt;
+  padding-right: 13mm;
+}
+.thead{
+  background-color: #CDCDCD;
+  font-weight: bold;
+}
+.cant,.desc,.val,.totalletras,.total{
+  border-width: 1px;
+  border-style: dotted;
+  border-color: #007bff;
+  height: 6mm;
+}
+#listado_contactos:td{
+  font-size: 5pt;
+}
+
+/* Estilos para la impresion*/
+@media print{
+
+  @page{
+    size: letter;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-size: 8pt;
+  }
+
+  small{
+    visibility: hidden;
+  }
+
+  th,td {
+   border-style: hidden;
+  }
+  .label{
+    visibility: hidden;
+  }
+   .cant{
+     border: none;
+     width: 11mm;
+   }
+   .desc{
+     border: none;
+     width: 142mm;
+   }
+   .val{
+     border: none;
+     width: 31mm;
+   }
+#fecha,#day,#month{
+   border: hidden;
+}
+.nombre,.nit,.direccion,.telefono,
+.totalletras,.total
+{
+   border: hidden;
+}
+  thead{
+    visibility: hidden;
+  }
+  button{
+    visibility: hidden;
+  }
+
+ section,footer{
+   visibility: hidden;
+ }
+
+}
