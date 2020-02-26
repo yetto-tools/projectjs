@@ -198,7 +198,7 @@ function sumar () {
         }
       }
     total = (parseFloat(subtotal)).toFixed(2);
-    console.log(total);
+    //console.log(total);
 
    //console.log(total);
     document.getElementById("total").innerHTML=new Intl.NumberFormat(
@@ -206,7 +206,7 @@ function sumar () {
 
    //console.log(num2words(total));
 
-    console.log(new Intl.NumberFormat("en-US",{ minimumFractionDigits: 2 }).format(total));
+    //console.log(new Intl.NumberFormat("en-US",{ minimumFractionDigits: 2 }).format(total));
 
     document.getElementById("totalletras").innerHTML =num2words(total);
     }

@@ -89,6 +89,7 @@ function dropTable(){ // Function Call when Drop Button Click.. Talbe will be dr
 
 function loadRecord(i){ // Function for display records which are retrived from database.
     var item = dataset.item(i);
+    document.getElementById("inputName").focus();
     $("#inputName").val((item['Nombre']).toString());
     $("#inputVat").val((item['Nit']).toString());
     $("#inputStreet").val((item['Direccion']).toString());
@@ -107,7 +108,7 @@ function resetForm(){ // Function for reset form input values.
 
 function loadAndReset(){ //Function for Load and Reset...
     resetForm();
-    showRecords()
+    showRecords();
 }
 
 function onError(tx, error){ // Function for Hendeling Error...
@@ -115,7 +116,7 @@ function onError(tx, error){ // Function for Hendeling Error...
 }
 
 function showRecords(){ // Function For Retrive data from Database Display records as list
-  $("#listado_contactos").html('')
+  $("#listado_contactos").html('');
   db.transaction(function (tx) {
     tx.executeSql(selectAllStatement, [], function (tx, result) {
       dataset = result.rows;
@@ -134,7 +135,7 @@ function showRecords(){ // Function For Retrive data from Database Display recor
     });
 }
 function sortRecords(value){ // Function For Retrive data from Database Display records as list
-  $("#listado_contactos").html('')
+  $("#listado_contactos").html('');
   db.transaction(function (tx) {
     tx.executeSql("select * from Contacts order by "+value+ " desc;" , [], function (tx, result) {
       dataset = result.rows;
@@ -153,14 +154,37 @@ function sortRecords(value){ // Function For Retrive data from Database Display 
         });
     });
 }
+<<<<<<< HEAD
+=======
+
 function findRecords(){ // Function For Retrive data from Database Display records as list
-  var usernametemp = $('input:text[id=findNit]').val();
+  var value = $('input:text[id=findNit]').val();
   var filtro = $('button:button[name=filtro]').val();
   console.log(filtro);
+>>>>>>> 202d275c6c7e786f8fe8f9546bd1df4c1e94c015
 
+function findRecords(){ // Function For Retrive data from Database Display records as list
+  var value = $('input:text[id=findNit]').val().toString();  
+  var filtro = $('input:radio[name=filtro]:checked').val().toString();
+  switch(filtro){
+    case "Nit":
+      filtro = "Nit";
+    break;
+    
+    case "Nombre":
+      filtro = "Nombre";
+    break;
+    default:
+      filtro="id";
+  }
+  console.log(' '+filtro);
   $("#listado_contactos").html('')
   db.transaction(function (tx) {
-    tx.executeSql("select * from Contacts where Nit like('%"+ usernametemp +"%') order by id desc;", [], function (tx, result) {
+<<<<<<< HEAD
+    tx.executeSql("select * from Contacts where " + filtro + " like('%"+ value +"%') order by id desc;", [], function (tx, result) {
+=======
+    tx.executeSql("select * from Contacts where Nit like('%"+ value +"%') order by id desc;", [], function (tx, result) {
+>>>>>>> 202d275c6c7e786f8fe8f9546bd1df4c1e94c015
       dataset = result.rows;
       for (var i = 0, item = null; i < dataset.length; i++) {
         item = dataset.item(i);
