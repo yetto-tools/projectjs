@@ -1,7 +1,9 @@
-*,body{
+
+* body{
   /* font-family:  'FreeMono','Space Mono'; */
   font-family:  'Oxygen Mono';
   font-size: 12pt;
+
 }
 
 #logo{
@@ -88,6 +90,11 @@ thead{
   border-color: #007bff;
   height: 6mm;
 }
+
+
+#regName{
+  font-size: 14pt;
+}
 #listado_contactos{
   font-size: 5pt;
 }
@@ -109,22 +116,25 @@ thead{
 
   @page{
     size: letter;
-    margin-left: 0px;
-    margin-right: 0px;
-    margin-top: 0px;
-    margin-bottom: 0px;
+    margin: 0 0 0 0;
+    border: 0 0 0 0;
+    padding:0 0 0 0;
     font-size: 8pt;
+  }
+  #navbar, #buttons{
+    display: none; 
+    
   }
 
   small{
-    visibility: hidden;
+    display: none; 
   }
 
   th,td {
    border-style: hidden;
   }
   .label{
-    visibility: hidden;
+    display: none; 
   }
    .cant{
      border: none;
@@ -150,11 +160,11 @@ thead{
     visibility: hidden;
   }
   button{
-    visibility: hidden;
+    display: none; 
   }
 
- section,footer{
-   visibility: hidden;
+ #listado,section,footer{
+   display: none; 
  }
 
 }
