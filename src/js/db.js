@@ -2,10 +2,10 @@ var createStatement =
   "CREATE TABLE IF NOT EXISTS Contacts(" +
     "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
     " Nombre TEXT, Nit TEXT," +
-    " Direccion TEXT, Telefono TEXT)";
+    " Direccion TEXT, Telefono TEXT, Fecha datetime timestamp NULL DEFAULT NULL )";
 var selectAllStatement = "SELECT * FROM Contacts";
-var insertStatement = "INSERT INTO Contacts (Nombre, Nit, Direccion, Telefono) VALUES (?, ?, ?, ?)";
-var updateStatement = "UPDATE Contacts SET Nombre = ?, Nit = ? , Direccion =?, Telefono=? WHERE id=?";
+var insertStatement = "INSERT INTO Contacts (Nombre, Nit, Direccion, Telefono, Fecha) VALUES (?, ?, ?, ?, ?)";
+var updateStatement = "UPDATE Contacts SET Nombre = ?, Nit = ? , Direccion =?, Telefono=?, Fecha=? WHERE id=?";
 var deleteStatement = "DELETE FROM Contacts WHERE id=?";
 var dropStatement = "DROP TABLE Contacts";
 var db = openDatabase("ContactosYClientes", "1.0", "ContactosYClientes", 50*1024*1024);  // Open SQLite Database
@@ -45,11 +45,11 @@ function insertRecord(){ // Get value from Input and insert record . Function Ca
   var nitTemp = $('input:text[id=inputVat]').val();
   var dirTemp = $('input:text[id=inputStreet]').val();
   var telTemp = $('input:text[id=inputPhone]').val();
-  console.log($('input:text[id=inputId]').val());
+  var fechaTemp = new Date;
   if($.trim(idTemp) == "" && $.trim(nombreTemp) !="" && $.trim(nitTemp)!="" ){
     db.transaction(function (tx) {
       tx.executeSql(insertStatement,
-        [ $.trim(nombreTemp), $.trim(nitTemp), $.trim(dirTemp), $.trim(telTemp)], loadAndReset, onError);
+        [ $.trim(nombreTemp), $.trim(nitTemp), $.trim(dirTemp), $.trim(telTemp) , fechaTemp] , loadAndReset, onError);
       });
     }
     else if($.trim(idTemp) != ""  && $.trim(nombreTemp) !="" && $.trim(nitTemp) !="" ){
@@ -71,9 +71,10 @@ function updateRecord(){ // Get id of record . Function Call when Delete Button 
     var dirUpdate = $('input:text[id=inputStreet]').val().toString();
     var phoneUpdate = $('input:text[id=inputPhone]').val().toString();
     var useridUpdate = $("#id").val();
+    var fechaUpdate = new Date;
     db.transaction(function (tx) {
       tx.executeSql(updateStatement,
-        [nombreUpdate, nitUpdate,dirUpdate,phoneUpdate, Number(useridUpdate)],
+        [nombreUpdate, nitUpdate,dirUpdate,phoneUpdate, fechaUpdate,Number(useridUpdate)],
         loadAndReset, onError); });
 }
 
@@ -87,14 +88,8 @@ function dropTable(){ // Function Call when Drop Button Click.. Talbe will be dr
 
 }
 
-function goto(tagId){
-  var top = document.getElementById(tagId).offsetTop; //Getting Y of target element
-  window.scrollTo(0, top);                        //Go there directly or some transition
-}
-
 function loadRecord(i){ // Function for display records which are retrived from database.
     var item = dataset.item(i);
-    document.getElementById("submitButton").focus();
     document.getElementById("inputName").focus();
     $("#inputName").val((item['Nombre']).toString());
     $("#inputVat").val((item['Nit']).toString());
@@ -134,7 +129,7 @@ function showRecords(){ // Function For Retrive data from Database Display recor
         '<td id="regVat"    style="width:10%;">' + item['Nit']    + '</td>' +
         '<td id="regPhone"  style="width:10%;">' + item['Telefono'] + '</td>' +
         '<td id="regStreet" style="width:36%;">' + item['Direccion'] + '</td>' +
-        '<td style="width:7%; " align="center">' + '<a class="btn btn-success btn-sm" id="actionEdit" href="#submitButton" onclick="loadRecord(' + i + ');">Editar</a>' + '</td>'+
+        '<td style="width:7%; " align="center">' + '<a class="btn btn-success btn-sm" id="actionEdit" href="#inputName" onclick="loadRecord(' + i + ');">Editar</a>' + '</td>'+
         '<td style="width:7%; " align="center">' + '<a class="btn btn-danger btn-sm" id="actionDelete" href="#" onclick="deleteRecord(' + item['id'] + ');">eliminar</a>'+'</td>'+
         '</tr>';
                 $("#listado_contactos").append(linkeditdelete);
@@ -156,7 +151,7 @@ function sortRecords(value){ // Function For Retrive data from Database Display 
         '<td id="regVat"    style="width:10%;">' + item['Nit']    + '</td>' +
         '<td id="regPhone"  style="width:10%;">' + item['Telefono'] + '</td>' +
         '<td id="regStreet" style="width:36%;">' + item['Direccion'] + '</td>' +
-        '<td style="width:7%; " align="center">' + '<a class="btn btn-success btn-sm" id="actionEdit" href="#submitButton" onclick="loadRecord(' + i + ');">Editar</a>' + '</td>'+
+        '<td style="width:7%; " align="center">' + '<a class="btn btn-success btn-sm" id="actionEdit" href="#inputName" onclick="loadRecord(' + i + ');">Editar</a>' + '</td>'+
         '<td style="width:7%; " align="center">' + '<a class="btn btn-danger btn-sm" id="actionDelete" href="#" onclick="deleteRecord(' + item['id'] + ');">eliminar</a>'+'</td>'+
         '</tr>';
         $("#listado_contactos").append(linkeditdelete);
@@ -179,23 +174,36 @@ function findRecords(){ // Function For Retrive data from Database Display recor
     default:
       filtro="id";
   }
-  //console.log(' '+filtro);
+  //limpiar la tabla de contactos
   $("#listado_contactos").html('')
+
   db.transaction(function (tx) {
     tx.executeSql("select * from Contacts where " + filtro + " like('%"+ value +"%') order by id asc;", [], function (tx, result) {
       dataset = result.rows;
-      for (var i = 0, item = null; i < dataset.length; i++) {
-        item = dataset.item(i);
-        var linkeditdelete = '<tr>'+
-        '<td id="regName"   style="width:30%;">' + '<a href="#" onclick="fillInvoice('+ i +')">' + item['Nombre'] +'</a>'+ '</td>' +
-        '<td id="regVat"    style="width:10%;">' + item['Nit']    + '</td>' +
-        '<td id="regPhone"  style="width:10%;">' + item['Telefono'] + '</td>' +
-        '<td id="regStreet" style="width:40%;">' + item['Direccion'] + '</td>' +
-        '<td style="width:7%; " align="center">' + '<a class="btn btn-success btn-sm" id="actionEdit" href="#submitButton" onclick="loadRecord(' + i + ');">Editar</a>' + '</td>'+
-        '<td style="width:7%; " align="center">' + '<a class="btn btn-danger btn-sm" id="actionDelete" href="#" onclick="deleteRecord(' + item['id'] + ');">eliminar</a>'+'</td>'+
-        '</tr>';
-                $("#listado_contactos").append(linkeditdelete);
-            }
+      var linkeditdelete;
+      if(dataset.length != 0){
+        for (var i = 0, item = null; i < dataset.length; i++) {
+          item = dataset.item(i);
+          linkeditdelete  = '<tr>'+
+          '<td id="regName"   style="width:30%;">' + '<a href="#" onclick="fillInvoice('+ i +')">' + item['Nombre'] +'</a>'+ '</td>' +
+          '<td id="regVat"    style="width:10%;">' + item['Nit']    + '</td>' +
+          '<td id="regPhone"  style="width:10%;">' + item['Telefono'] + '</td>' +
+          '<td id="regStreet" style="width:36%;">' + item['Direccion'] + '</td>' +
+          '<td style="width:7%; " align="center">' + '<a class="btn btn-success btn-sm" id="actionEdit" href="#inputName" onclick="loadRecord(' + i + ');">Editar</a>' + '</td>'+
+          '<td style="width:7%; " align="center">' + '<a class="btn btn-danger btn-sm" id="actionDelete" href="#" onclick="deleteRecord(' + item['id'] + ');">eliminar</a>'+'</td>'+
+          '</tr>';
+          $("#listado_contactos").append(linkeditdelete);
+        }
+      }
+      else if (dataset.length==0){
+      linkeditdelete =  '<tr class="text-danger">'+
+        '<td colspan="6" align="center"  ><strong>Sin Resultados</strong></td>'
+        +'</tr>';
+        $("#listado_contactos").append(linkeditdelete);
+      }
+
+
+
         });
     });
 
