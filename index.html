@@ -20,7 +20,7 @@
 <!-- Fecha -->
     <div class="row">
       <div class="col">
-        <table id="fecha" class="tbl" align="right">
+        <table id="fecha" class="tbl" align="right" style="">
           <tr>
             <td id="day" contenteditable="true"></td>
             <td id="month" contenteditable="true"></td>
@@ -130,27 +130,27 @@
       </div>
     </div>
   </div>
-  <section id="listado" class="row mt-4">
-        <div class="col-12">
+  <section id="listado" class="row mt-5 pt-5">
+        <div class="col-12 mt-5">
 
           <div class="col-sm col-md-12" align="center">
             <div class="cols-sm col-sm-5">
-              <form class="form form-inline " action="index.html" method="post">
-                <input id="findNit"class="form-control mr-1" type="text" name="" value="" placeholder="Buscar Contacto">
-                <input id="btnFind" class="btn btn-primary btn-sm" type="button" name="" value="Buscar">
+              <form class="form form-group form-inline">
+                <input id="findNit"class="form-control mr-1" type="text" placeholder="Buscar Contacto" required>
+                <input id="btnFind" class="btn btn-primary btn-sm" type="button" name="btnFind" value="Buscar"  href="#inputName">
               </form>
             </div>
               <div class="col-sm-4 col-xs-12 pr-0">
-                <div class="btn-toolbar mt-1 role-toolbar" aria-label="Toolbar with button groups">
+                <div class="form-group">
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" id="filtro1" name="filtro" value="Nombre">
+                  <input class="form-check-input" type="radio" id="filtro1" name="filtro" value="Nombre" checked>
                   <label class="form-check-label pl-0 mr-3" for="filtro1">
                     <small class="form-text text-muted text-wrap pl-0" style="width: 5rem;">filtar por Nombre</small>
                     <!-- <small class="form-text text-muted text-wrap pl-0" style="width: 6rem;">filtar por Nombre</small> -->
                   </label>
                 </div>
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" id="filtro2" name="filtro" value="Nit" checked>
+                  <input class="form-check-input" type="radio" id="filtro2" name="filtro" value="Nit" >
                   <label class="form-check-label pl-0" for="filtro1">
                     <small class="form-text text-muted text-wrap pl-0" style="width: 5rem;">filtar por Nit</small>
                     <!-- <small class="form-text text-muted text-wrap" style="width: 6rem;">filtar por Nombre</small> -->
@@ -178,7 +178,7 @@
                         <th colspan="2" >Acciones</th>
                       </tr>
                     </thead>
-                    <tbody id="listado_contactos">
+                    <tbody id="listado_contactos" name="lista">
                       <tr>
                         <td id="listid" style="visibility: hidden"/>
                         <td id="listNombre"></td>
@@ -215,7 +215,7 @@
 
                 <div class="form-group">
                   <small class="form-text text-muted">Direccion</small>
-                    <input class="form-control" type="text" id="inputStreet" value="" placeholder="Direccion">
+                    <input class="form-control" type="text" id="inputStreet" value="" placeholder="Direccion" default="Ciudad">
                     <small class="form-text text-muted">Telefono</small>
                     <input class="form-control" type="text" id="inputPhone" value="" placeholder="Telefono">
                 </div>
@@ -243,7 +243,9 @@
 
     <script src="src/js/factura.js">
     </script>
-    <script src="src/js/db.js"></script>
+    <script src="src/js/db.js">
+
+    </script>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
