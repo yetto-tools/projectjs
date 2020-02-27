@@ -11,7 +11,29 @@
     <link rel="stylesheet" href="src/css/factura.css">
     <!-- <link rel="stylesheet" href="superhero.min.css"> -->
   </head>
-  <body onload="fecha()" >
+  
+  <body onload="fecha()">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark" id="navbar">
+      <a class="navbar-brand" href="#logo">Factura</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="w-50 collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Clientes
+            </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="#findNit">Buscar Clientes</a>
+          <a class="dropdown-item" href="#inputName">Agregar uno Nuevo</a>
+          <a class="dropdown-item" href="#actionEdit">Editar Cliente</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>
+
     <div class="row" id="logo">
       <!-- <input type="button" value="Genera una tabla" onclick="generar_lineas"> -->
         <!-- <button type="button" onclick="javascript:window.print()">Imprimir</button> -->
@@ -118,7 +140,7 @@
 
         </tfoot>
       </table>
-      <div class="row mb-4" align="center" >
+      <div class="row mb-4" align="center" id="buttons">
           <div class="col-sm col-md-6">
             <button class="btn btn-warning btn-sm" type="button" name="button" onclick="borrar()">Limpiar Campos</button>
             <small class="form-text text-muted">Borra dos Datos del Formulario</small>
@@ -169,7 +191,7 @@
                   <hr>
 
                   <table class="tabla table-striped table-light w-100 ml-3 mr-5">
-                    <thead class="table-dark text-center">
+                    <thead class="table-dark text-left">
                       <tr>
                         <th onclick="sortRecords('Nombre')">Nombre</th>
                         <th onclick="sortRecords('Nit')">Nit</th>
